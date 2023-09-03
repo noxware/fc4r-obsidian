@@ -31,10 +31,9 @@ function renderResults(
 			li.createEl("a", { attr: { href: result }, text: result });
 		}
 	} else if (as === "gallery") {
-		const gallery = into.createDiv();
+		const gallery = into.createDiv({ cls: "fc4r-gallery-grid" });
 		for (const result of results) {
-			const img = gallery.createEl("img", { attr: { src: result } });
-			img.style.width = "100%";
+			gallery.createEl("img", { attr: { src: result } });
 		}
 	} else {
 		throw new Error(`Unknown view "${as}"`);
@@ -49,6 +48,7 @@ export function registerCodeBlockProcessor(plugin: FcPlugin) {
 				const config = parseSource(source, plugin.settings);
 				el.createEl("p", {
 					text: `QUERY "${config.prompt}" ON "${config.path}"`,
+					cls: "blabla",
 				});
 
 				const resultsWrapper = el.createDiv();

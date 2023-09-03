@@ -1,8 +1,11 @@
-/*
+.fc4r-gallery-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-column-gap: 0.75rem;
+	grid-row-gap: 0.75rem;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
-
-If your plugin does not need CSS, delete this file.
-
-*/
+.fc4r-gallery-grid img {
+	max-height: 480px;
+	object-fit: contain;
+}
