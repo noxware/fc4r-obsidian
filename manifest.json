@@ -1,10 +1,10 @@
 {
-	"id": "fc4r",
-	"name": "FC4R Plugin",
-	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
-	"description": "Integrates FC4R into Obsidian.",
-	"author": "noxware",
-	"authorUrl": "noxware.dev",
-	"isDesktopOnly": false
+  "id": "fc4r-obsidian",
+  "name": "FC4R Plugin",
+  "version": "0.1.0",
+  "minAppVersion": "0.15.0",
+  "description": "Integrates FC4R into Obsidian.",
+  "author": "noxware",
+  "authorUrl": "noxware.dev",
+  "isDesktopOnly": false
 }
