@@ -10,7 +10,7 @@ function parseSource(source: string, settings: FcSettings) {
 	return {
 		path: on ?? settings.path,
 		prompt: query,
-		view: as,
+		view: as ?? settings.view,
 	};
 }
 

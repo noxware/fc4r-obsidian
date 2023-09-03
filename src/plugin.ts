@@ -7,6 +7,7 @@ import type { FcSettings } from "./settingsTab";
 
 const defaultSettings: FcSettings = {
 	path: "../",
+	view: "list",
 };
 
 export class FcPlugin extends Plugin {
