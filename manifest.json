@@ -1,6 +1,6 @@
 {
   "id": "fc4r-obsidian",
-  "name": "FC4R Plugin",
+  "name": "FC4R",
   "version": "0.1.0",
   "minAppVersion": "0.15.0",
   "description": "Integrates FC4R into Obsidian.",
