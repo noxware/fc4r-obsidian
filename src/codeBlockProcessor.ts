@@ -6,11 +6,38 @@ import type { FcPlugin } from "./plugin";
 import type { FcSettings } from "./settingsTab";
 
 function parseSource(source: string, settings: FcSettings) {
-	const { on, query } = parseYaml(source);
+	const { as, on, query } = parseYaml(source);
 	return {
 		path: on ?? settings.path,
 		prompt: query,
+		view: as,
 	};
+}
+
+function renderResults(
+	results: string[],
+	into: HTMLElement,
+	as: "list" | "gallery"
+) {
+	if (results.length === 0) {
+		into.createEl("p", { text: "No results" });
+		return;
+	}
+
+	if (as === "list") {
+		const ul = into.createEl("ul");
+		for (const result of results) {
+			ul.createEl("li", { text: result });
+		}
+	} else if (as === "gallery") {
+		const gallery = into.createDiv("gallery");
+		for (const result of results) {
+			const img = gallery.createEl("img", { attr: { src: result } });
+			img.style.width = "100%";
+		}
+	} else {
+		throw new Error(`Unknown view "${as}"`);
+	}
 }
 
 export function registerCodeBlockProcessor(plugin: FcPlugin) {
@@ -29,10 +56,7 @@ export function registerCodeBlockProcessor(plugin: FcPlugin) {
 				const results = await query(config);
 
 				resultsWrapper.empty();
-				const resultsEl = resultsWrapper.createEl("ul");
-				for (const r of results) {
-					resultsEl.createEl("li", { text: r });
-				}
+				renderResults(results, resultsWrapper, config.view);
 			} catch (e) {
 				el.innerHTML = e.message;
 			}
