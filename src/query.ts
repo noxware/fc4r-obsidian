@@ -49,7 +49,7 @@ export function query({ prompt, path }: QueryParams): Promise<string[]> {
 					)
 				);
 			} else {
-				resolve(output.split("\n"));
+				resolve(output.trim().split("\n"));
 			}
 		});
 	});

@@ -19,11 +19,20 @@ export function registerCodeBlockProcessor(plugin: FcPlugin) {
 		async (source, el, ctx) => {
 			try {
 				const config = parseSource(source, plugin.settings);
-				el.createEl("pre", {
-					text: JSON.stringify(config, null, "  "),
+				el.createEl("p", {
+					text: `QUERY "${config.prompt}" ON "${config.path}"`,
 				});
+
+				const resultsWrapper = el.createDiv();
+				resultsWrapper.createEl("p", { text: "Loading..." });
+
 				const results = await query(config);
-				el.createEl("pre", { text: results.join("\n") });
+
+				resultsWrapper.empty();
+				const resultsEl = resultsWrapper.createEl("ul");
+				for (const r of results) {
+					resultsEl.createEl("li", { text: r });
+				}
 			} catch (e) {
 				el.innerHTML = e.message;
 			}
