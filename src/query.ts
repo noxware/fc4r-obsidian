@@ -1,4 +1,6 @@
 import { spawn } from "child_process";
+import { join } from "path";
+import { convertPathToUrl } from "./localProtocol";
 
 interface QueryParams {
 	prompt: string;
@@ -49,7 +51,13 @@ export function query({ prompt, path }: QueryParams): Promise<string[]> {
 					)
 				);
 			} else {
-				resolve(output.trim().split("\n"));
+				resolve(
+					output
+						.trim()
+						.split("\n")
+						.map((line) => join(path, line))
+						.map((line) => convertPathToUrl(line))
+				);
 			}
 		});
 	});

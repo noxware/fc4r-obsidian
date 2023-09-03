@@ -27,10 +27,11 @@ function renderResults(
 	if (as === "list") {
 		const ul = into.createEl("ul");
 		for (const result of results) {
-			ul.createEl("li", { text: result });
+			const li = ul.createEl("li");
+			li.createEl("a", { attr: { href: result }, text: result });
 		}
 	} else if (as === "gallery") {
-		const gallery = into.createDiv("gallery");
+		const gallery = into.createDiv();
 		for (const result of results) {
 			const img = gallery.createEl("img", { attr: { src: result } });
 			img.style.width = "100%";
