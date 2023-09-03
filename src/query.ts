@@ -53,8 +53,8 @@ export function query({ prompt, path }: QueryParams): Promise<string[]> {
 			} else {
 				resolve(
 					output
-						.trim()
 						.split("\n")
+						.filter((line) => line)
 						.map((line) => join(path, line))
 						.map((line) => convertPathToUrl(line))
 				);
